@@ -1,4 +1,4 @@
-// LRU CACHE
+// LRU CACHE 146
 class LRUCache {
 public:
     class node{
@@ -72,5 +72,43 @@ public:
 
         addnode(new node(key, value));
         mp[key] = head->next;
+    }
+};
+
+
+// LONGEST VALID PARANTHESES 32
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        if(s.length()<=1) return 0;
+
+        stack<int>index;
+        stack<char>ch;
+
+        int ans = 0;
+        index.push(-1);
+
+        for(int i = 0;i<s.size();i++)
+        {
+            if(s[i] == '(')
+            {
+                index.push(i);
+                ch.push('(');
+            }
+            else 
+            {   
+               if(!ch.empty()&&ch.top()=='(')
+                {
+                    index.pop();
+                    ch.pop();
+                    ans = max(ans,( i-index.top()));
+                }
+                else
+                {  
+                    index.push(i);
+                }     
+            }  
+        }
+        return ans;
     }
 };
