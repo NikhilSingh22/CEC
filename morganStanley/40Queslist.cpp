@@ -112,3 +112,28 @@ public:
         return ans;
     }
 };
+
+
+
+
+//MINIMUM ABSOLUTE DIFFERENCE 1200
+class Solution {
+public:
+    vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
+        vector<vector<int>> ans;
+        int diff = INT_MAX;
+        sort(arr.begin(),arr.end());
+        for(int i = 0;i<arr.size()-1;i++)
+        {
+            if(abs(arr[i]-arr[i+1])<diff)
+            {
+                ans.clear();
+                diff=abs(arr[i]-arr[i+1]);
+                ans.push_back({arr[i],arr[i+1]});
+            }
+            else if(abs(arr[i]-arr[i+1])==diff)
+            ans.push_back({arr[i],arr[i+1]});
+        }
+        return ans;
+    }
+};
